@@ -1,0 +1,30 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Mój blog';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('post', array('action'=>'add'));?>">Dodaj nowy wpis</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Tytuł</th>
+    <th>Treść</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($post as $post) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($post->title);?></td>
+    <td><?php echo $this->escapeHtml($post->content);?></td>
+    <td>
+        <a href="<?php echo $this->url('post',
+            array('action'=>'edit', 'id' => $post->id));?>">Edycja</a>
+        <a href="<?php echo $this->url('post',
+            array('action'=>'delete', 'id' => $post->id));?>">Kasowanie</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
